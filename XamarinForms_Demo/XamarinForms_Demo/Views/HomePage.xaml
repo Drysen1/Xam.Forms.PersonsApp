@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinForms_Demo.Views.HomePage"
+             Title="HomePage">
+    <StackLayout 
+        Spacing="5" 
+        Padding="10, 20, 10, 10"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <Label 
+            Text="Welcome to the persons app!" 
+            FontSize="Large" 
+            FontAttributes="Bold"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+        <Label Text="This is an example app to introduce developers to xamarin forms. The app follows the MVVM pattern as much as it can and this app uses a web service, an api to get, save, update and delete data from a sql database. Feel free to play around with the code. To get the app working properly you will also have to download the web api example application as well. A link can be found in the readme file."
+               FontSize="Medium"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"/>
+    </StackLayout>
+</ContentPage>

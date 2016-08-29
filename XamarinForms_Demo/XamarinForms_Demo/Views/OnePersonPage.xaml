@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinForms_Demo.Views.OnePersonPage">
+    <Grid>
+        <StackLayout
+        Spacing="5"
+        Padding="10, 20, 10, 10">
+            <Label Text="Enter id of person" />
+            <Entry Text="{Binding Person.IDPerson, Mode=TwoWay, StringFormat='{0:#}'}"
+                   Placeholder="Enter id"/>
+            <Button Text="Load Person"
+                    Command="{Binding btnLoadPerson_Command}"/>
+            <Label Text="Firstname: " />
+            <Label Text="{Binding Person.FirstName}" />
+            <Label Text="Lastname: " />
+            <Label Text="{Binding Person.LastName}" />
+            <Label Text="Age: " />
+            <Label Text="{Binding Person.Age, StringFormat='{0:#}'}" />
+            <Label Text ="{Binding Message}"/>
+        </StackLayout>
+        <Grid
+        x:Name="loadingOverlay"
+        IsVisible="{Binding IsLoading}"
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+        BackgroundColor="Black"
+        Opacity="0.8">
+            <StackLayout
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Spacing="10">
+                <ActivityIndicator
+                    IsVisible="{Binding IsLoading}"
+                    IsRunning="{Binding IsLoading}"
+                    x:Name="loadingIndicator"
+                    Color="Red" />
+                <Label
+                    Text="Loading..."
+                    TextColor="White"
+                    FontSize="Large"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

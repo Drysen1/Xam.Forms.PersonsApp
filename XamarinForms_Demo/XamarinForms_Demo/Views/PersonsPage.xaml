@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinForms_Demo.Views.PersonsPage"
+             Title="PersonPage"   >
+    <ScrollView>
+        <Grid>
+            <StackLayout
+                Padding="10,0,10,20"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Button
+                    Text="Load List"
+                    Command="{Binding btnLoadList_Command}" />
+                <StackLayout
+                    VerticalOptions="FillAndExpand">
+                    <ListView
+                        ItemsSource="{Binding PersonsObservableList}"
+                        HasUnevenRows="True"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="#262626"
+                        SeparatorColor="#4ca6ff"
+                        ItemSelected="PersonListView_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout
+                                            Padding="5"
+                                            Spacing="5"
+                                            VerticalOptions="FillAndExpand"
+                                            Orientation="Vertical">
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="{Binding FirstName}" />
+                                            <Label Text="{Binding LastName}" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Age: " />
+                                            <Label Text="{Binding Age}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+
+            <Grid
+                   x:Name="PopUpEdit"
+                   IsVisible="{Binding IsPopUpEditShowing}"
+                   VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   Padding="10">
+                <StackLayout
+                    BackgroundColor="#262626"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="5"
+                    Padding="5">
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="5, 0, 0, 0"   >
+                        <Label
+                            Text="Edit Person"
+                            FontSize="Medium"
+                            FontAttributes="Bold"
+                            VerticalTextAlignment="Center"/>
+
+                        <Button Text="Close"
+                                FontAttributes="Bold"
+                                HorizontalOptions="EndAndExpand"
+                                Command="{Binding btnClosPopUps}"/>
+                    </StackLayout>
+                    <StackLayout Padding="20,0,20,0">
+                        <Label Text="Firstname" />
+                        <Entry Text="{Binding Person.FirstName, Mode=TwoWay}"
+                               Keyboard="Text"
+                               Placeholder="Firstname"/>
+                        <Label Text="Lastname" />
+                        <Entry Text="{Binding Person.LastName, Mode=TwoWay}"
+                               Keyboard="Text"
+                               Placeholder="Lastname"/>
+                        <Label Text="Age" />
+                        <Entry Text="{Binding Person.Age, Mode=TwoWay, StringFormat='{0:#}'}"
+                               Keyboard="Numeric"
+                               Placeholder="Age"/>
+                        <Button
+                            Text="Delete Person"
+                            Command="{Binding btnDelete_Command}"/>
+                        <Button
+                            Text="Save Changes"
+                            Command="{Binding btnSaveChanges_Command}"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </Grid>
+            
+            <Grid
+                x:Name="PopUpMessageBox"
+                IsVisible="{Binding IsPopUpMessageBoxShowing}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Padding="20">
+                <StackLayout
+                    BackgroundColor="#262626"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="5">
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="5, 0, 0, 0"   >
+                        <Label Text="Message"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <Label Text="{Binding Message}"
+                           FontSize="Medium"
+                           VerticalTextAlignment="Center"/>
+                    <StackLayout Padding="0,10,0,0">
+                        <BoxView
+                            BackgroundColor="#4ca6ff"
+                            HeightRequest="1"></BoxView>
+                        <Button
+                            x:Name="btnOK"
+                            Command="{Binding btnOK}"
+                            Text="OK"
+                            FontSize="Large"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+
+            <Grid
+                x:Name="loadingOverlay"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Black"
+                Opacity="0.8">
+                <StackLayout
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Spacing="10">
+                    <ActivityIndicator
+                        IsVisible="{Binding IsLoading}"
+                        IsRunning="{Binding IsLoading}"
+                        x:Name="loadingIndicator"
+                        Color="Red" />
+                    <Label
+                        Text="Loading..."
+                        TextColor="White"
+                        FontSize="Large"
+                        FontAttributes="Bold"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

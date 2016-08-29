@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinForms_Demo.Views.CreatePersonPage"
+             Title="Add new person">
+    <ScrollView>
+        <Grid>
+            <StackLayout Spacing="5"
+                         Padding="10,20,10,10">
+                <Label Text="Firstname" />
+                <Entry Text="{Binding Person.FirstName, Mode=TwoWay}"
+                       Keyboard="Text"
+                       Placeholder="Firstname"/>
+                <Label Text="Lastname" />
+                <Entry Text="{Binding Person.LastName, Mode=TwoWay}"
+                       Keyboard="Text"
+                       Placeholder="Lastname"/>
+                <Label Text="Age" />
+                <Entry Text="{Binding Person.Age, Mode=TwoWay, StringFormat='{0:#}'}"
+                       Keyboard="Numeric"
+                       Placeholder="Age"/>
+                <Button
+                    Text="Add Person"
+                    Command="{Binding btnAdd_Command} "/>
+                <Label Text="{Binding Message}" />
+            </StackLayout>
+
+            <Grid
+                x:Name="loadingOverlay"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Black"
+                Opacity="0.8">
+                <StackLayout
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Spacing="10">
+                    <ActivityIndicator
+                        IsVisible="{Binding IsLoading}"
+                        IsRunning="{Binding IsLoading}"
+                        x:Name="loadingIndicator"
+                        Color="Red" />
+                    <Label
+                        Text="Loading..."
+                        TextColor="White"
+                        FontSize="Large"
+                        FontAttributes="Bold"/>
+                </StackLayout>
+            </Grid>            
+        </Grid>        
+    </ScrollView>
+
+</ContentPage>
